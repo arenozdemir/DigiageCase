@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1605590471320347375}
   - component: {fileID: 1605590471320347360}
   - component: {fileID: 1810793798}
+  - component: {fileID: 5012298079451776304}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -122,6 +123,18 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5012298079451776304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605590471320347363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8aa8fbf6accc244a12f784ed33e5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8472276366647932335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,6 +142,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1605590471320347362}
     m_Modifications:
+    - target: {fileID: 1980099524585299068, guid: ebb73ee33ab3fb04bb5b27b3bf193b1c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000030708998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980099524585299068, guid: ebb73ee33ab3fb04bb5b27b3bf193b1c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0027116283
+      objectReference: {fileID: 0}
     - target: {fileID: 2799667531576473494, guid: ebb73ee33ab3fb04bb5b27b3bf193b1c, type: 3}
       propertyPath: m_Name
       value: T-Pose
@@ -177,6 +198,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3724107261743314191, guid: ebb73ee33ab3fb04bb5b27b3bf193b1c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.015680498
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724107261743314191, guid: ebb73ee33ab3fb04bb5b27b3bf193b1c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.010272416
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb73ee33ab3fb04bb5b27b3bf193b1c, type: 3}
 --- !u!1 &6001601476801315385 stripped
@@ -186,7 +215,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &6341675285143925476
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -203,7 +232,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!4 &6341675284517066883 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3283610550554012972, guid: ebb73ee33ab3fb04bb5b27b3bf193b1c, type: 3}
