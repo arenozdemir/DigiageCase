@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void Update()
     {
-        MovementHandler();
+        //MovementHandler();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -46,20 +46,20 @@ public class PlayerScript : MonoBehaviour
     {
         for (int i = 0; i < numberOfStickMan; i++)
         {
-            var child = transform.GetChild(i);
-            child.position = new Vector3(player.position.x + (i * distance), player.position.y, player.position.z);
+            var x = Mathf.Cos(i * 2 * Mathf.PI / numberOfStickMan) * radius;
+            var z = Mathf.Sin(i * 2 * Mathf.PI / numberOfStickMan) * radius;
+            transform.GetChild(i).localPosition = new Vector3(x, 0, z);
+            
         }
     }
-    private void MovementHandler()
+    /*private void MovementHandler()
     {
-        /*
         var mousePosition = Input.mousePosition;
         Debug.Log(mousePosition);
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosition.z = 0;
         mousePosition.y = 0;
         mousePosition.x = Mathf.Clamp(mousePosition.x, -10, 10);
-        transform.position = Vector3.Lerp(transform.position, mousePosition, Time.deltaTime);
-        */
-    }
+        transform.position = Vector3.Lerp(transform.position, mousePosition, Time.deltaTime);   
+    }*/
 }

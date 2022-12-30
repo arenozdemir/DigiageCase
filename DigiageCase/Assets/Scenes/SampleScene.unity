@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 6fc7a15a37f138047be4d8f1d3303557, type: 2}
 --- !u!1 &516246151
 GameObject:
   m_ObjectHideFlags: 3
@@ -440,7 +440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0.97148716, z: -0.23709245, w: 0}
-  m_LocalPosition: {x: 0, y: 7.716653, z: 57.015778}
+  m_LocalPosition: {x: 0, y: 7.7166533, z: 56.795776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -498,7 +498,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &1046245104
 MeshCollider:
@@ -573,7 +573,7 @@ Transform:
   m_GameObject: {fileID: 1046245103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 10}
+  m_LocalScale: {x: 1.5, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1349710085}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
@@ -642,7 +642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334544779}
   m_LocalRotation: {x: 0, y: 0.97148716, z: -0.23709245, w: 0}
-  m_LocalPosition: {x: -0, y: 7.716653, z: 57.015778}
+  m_LocalPosition: {x: -0, y: 7.7166533, z: 56.795776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 1349710085}
   - component: {fileID: 1349710086}
   - component: {fileID: 1349710088}
-  - component: {fileID: 1349710087}
+  - component: {fileID: 1349710089}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -699,8 +699,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stickMan: {fileID: 1810793793}
   distance: 0.82
-  radius: 1.52
---- !u!54 &1349710087
+  radius: 1.92
+--- !u!65 &1349710088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349710084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.9394658, z: 1}
+  m_Center: {x: 0, y: 0.05032575, z: 0}
+--- !u!54 &1349710089
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -716,19 +729,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1349710088
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349710084}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.9394658, z: 1}
-  m_Center: {x: 0, y: 0.05032575, z: 0}
 --- !u!1 &1758988589
 GameObject:
   m_ObjectHideFlags: 0
