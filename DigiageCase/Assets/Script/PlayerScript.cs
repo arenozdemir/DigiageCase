@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    private Transform player;
     [SerializeField] private GameObject stickMan;
-    [Range(0,1)] private float distance, radius;
+    [Range(0,3)] [SerializeField] private float distance, radius;
     private int numberOfStickMan;
     //numberOfStickman diye tutulan sayý ürettiðimiz kopya sayýsý aslýnda yani bizim childobje sayýmýz
     private void Start()
     {
+        player = transform;
         numberOfStickMan = transform.childCount;
         Debug.Log("baþlangýçtaki stickman sayýsý" + numberOfStickMan);
     }
@@ -21,10 +23,8 @@ public class PlayerScript : MonoBehaviour
             other.gameObject.SetActive(false);
 
             var gate = other.GetComponent<GateScript>();
-           
-            GenerateStickMan(gate.randomNumber * numberOfStickMan);
 
-            //if (gate.multiply!) GenerateStickMan(gate.randomNumber + numberOfStickMan);
+            GenerateStickMan(gate.multiply ? (numberOfStickMan * gate.randomNumber)  : (numberOfStickMan + gate.randomNumber));
         }
     }
     private void GenerateStickMan(int number)
@@ -32,31 +32,22 @@ public class PlayerScript : MonoBehaviour
         Debug.Log("oluþmasýný istediðimiz stickman sayýsý" + number);
         for (int i = 0; i < number; i++)
         {
-            //Instantiate stickMan at the position of player, stickMans child of player
             Instantiate(stickMan, transform.position, Quaternion.identity,transform);
         }
         numberOfStickMan = transform.childCount;
         Debug.Log("sonuç stick man sayýsý " + numberOfStickMan);
-        //FormatStickMan();
+        FormatStickMan();
     }
     private void FormatStickMan()
     {
-        //format stickman
-        /*int i = 0;
-        foreach (Transform child in transform)
+        for(int i = 0; i < transform.childCount; i++)
         {
-            float angle = i * Mathf.PI * 2f / numberOfStickMan;
-            Vector3 newPos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
-            child.localPosition = newPos;
-            i++;
-        }*/
-        for (int i = 0; i < numberOfStickMan; i++)
-        {
-            float angle = i * Mathf.PI * 2f / numberOfStickMan;
-            Vector3 newPos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
-            transform.GetChild(i).localPosition = newPos;
+            var x = distance * Mathf.Sqrt(i) * Mathf.Cos(i * radius);
+            var z = distance * Mathf.Sqrt(i) * Mathf.Cos(i * radius);
+
+            var newPosition = new Vector3(x, 0, z);
+            player.transform.GetChild(i).localPosition = newPosition;
         }
     }
-
 
 }
