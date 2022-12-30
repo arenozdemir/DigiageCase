@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     private Transform player;
     [SerializeField] private GameObject stickMan;
-    [Range(0,3)] [SerializeField] private float distance, radius;
+    [Range(0, 3)][SerializeField] private float distance, radius;
     private int numberOfStickMan;
     //numberOfStickman diye tutulan sayý ürettiðimiz kopya sayýsý aslýnda yani bizim childobje sayýmýz
     private void Start()
@@ -14,6 +14,10 @@ public class PlayerScript : MonoBehaviour
         player = transform;
         numberOfStickMan = transform.childCount;
         Debug.Log("baþlangýçtaki stickman sayýsý" + numberOfStickMan);
+    }
+    private void Update()
+    {
+        MovementHandler();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -24,7 +28,7 @@ public class PlayerScript : MonoBehaviour
 
             var gate = other.GetComponent<GateScript>();
 
-            GenerateStickMan(gate.multiply ? (numberOfStickMan * gate.randomNumber)  : (numberOfStickMan + gate.randomNumber));
+            GenerateStickMan(gate.multiply ? (numberOfStickMan * gate.randomNumber) : (numberOfStickMan + gate.randomNumber));
         }
     }
     private void GenerateStickMan(int number)
@@ -32,7 +36,7 @@ public class PlayerScript : MonoBehaviour
         Debug.Log("oluþmasýný istediðimiz stickman sayýsý" + number);
         for (int i = 0; i < number; i++)
         {
-            Instantiate(stickMan, transform.position, Quaternion.identity,transform);
+            Instantiate(stickMan, transform.position, Quaternion.identity, transform);
         }
         numberOfStickMan = transform.childCount;
         Debug.Log("sonuç stick man sayýsý " + numberOfStickMan);
@@ -46,15 +50,16 @@ public class PlayerScript : MonoBehaviour
             child.position = new Vector3(player.position.x + (i * distance), player.position.y, player.position.z);
         }
     }
-    //move left and right the stickman with mouse position
-    private void Update()
+    private void MovementHandler()
     {
-        if (Input.GetMouseButton(0))
-        {
-            var mousePosition = Input.mousePosition;
-            mousePosition.z = 10;
-            var mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            transform.position = new Vector3(mouseWorldPosition.x, transform.position.y, transform.position.z);
-        }
+        /*
+        var mousePosition = Input.mousePosition;
+        Debug.Log(mousePosition);
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        mousePosition.z = 0;
+        mousePosition.y = 0;
+        mousePosition.x = Mathf.Clamp(mousePosition.x, -10, 10);
+        transform.position = Vector3.Lerp(transform.position, mousePosition, Time.deltaTime);
+        */
     }
 }
