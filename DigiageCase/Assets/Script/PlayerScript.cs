@@ -40,14 +40,21 @@ public class PlayerScript : MonoBehaviour
     }
     private void FormatStickMan()
     {
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < numberOfStickMan; i++)
         {
-            var x = distance * Mathf.Sqrt(i) * Mathf.Cos(i * radius);
-            var z = distance * Mathf.Sqrt(i) * Mathf.Cos(i * radius);
-
-            var newPosition = new Vector3(x, 0, z);
-            player.transform.GetChild(i).localPosition = newPosition;
+            var child = transform.GetChild(i);
+            child.position = new Vector3(player.position.x + (i * distance), player.position.y, player.position.z);
         }
     }
-
+    //move left and right the stickman with mouse position
+    private void Update()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            var mousePosition = Input.mousePosition;
+            mousePosition.z = 10;
+            var mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            transform.position = new Vector3(mouseWorldPosition.x, transform.position.y, transform.position.z);
+        }
+    }
 }
