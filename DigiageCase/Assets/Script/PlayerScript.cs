@@ -9,22 +9,21 @@ public class PlayerScript : MonoBehaviour
     [Range(0, 3)][SerializeField] private float distance, radius;
     private int numberOfStickMan;
     Vector3 offset;
-    //numberOfStickman diye tutulan sayý ürettiðimiz kopya sayýsý aslýnda yani bizim childobje sayýmýz
+
     private void Start()
     {
         player = transform;
         numberOfStickMan = transform.childCount;
-        Debug.Log("baþlangýçtaki stickman sayýsý" + numberOfStickMan);
     }
     private void Update()
     {
         MovementHandler();
+        AnimationHandler();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Gate"))
         {
-            Debug.Log("triggered");
             other.gameObject.SetActive(false);
 
             var gate = other.GetComponent<GateScript>();
@@ -34,13 +33,11 @@ public class PlayerScript : MonoBehaviour
     }
     private void GenerateStickMan(int number)
     {
-        Debug.Log("oluþmasýný istediðimiz stickman sayýsý" + number);
         for (int i = 0; i < number; i++)
         {
             Instantiate(stickMan, transform.position, Quaternion.identity, transform);
         }
         numberOfStickMan = transform.childCount;
-        Debug.Log("sonuç stick man sayýsý " + numberOfStickMan);
         FormatStickMan();
     }
     private void FormatStickMan()
@@ -56,8 +53,6 @@ public class PlayerScript : MonoBehaviour
     Vector3 mousePosition;
     private void MovementHandler()
     {
-        
-        
         mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y, Camera.main.transform.position.z - 9));
        // mousePosition.z = Camera.main.transform.position.z - 9;
         mousePosition.y = 0;
@@ -67,8 +62,8 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             offset = transform.position - mousePosition;
-            Debug.Log(offset);
-            Debug.Log(mousePosition);
+            //Debug.Log(offset);
+            //Debug.Log(mousePosition);
         }
 
         if (Input.GetMouseButton(0))
@@ -76,6 +71,12 @@ public class PlayerScript : MonoBehaviour
                transform.position = Vector3.Lerp(transform.position, mousePosition + offset, Time.deltaTime);
            // transform.position = mousePosition + offset;
         }
-        
+    }
+    private void AnimationHandler()
+    {
+        foreach (Transform child in transform)
+        {
+            child.GetComponentInChildren<Animator>().SetTrigger("isRunning");
+        }
     }
 }
