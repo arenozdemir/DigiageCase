@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject stickMan;
     [Range(0, 3)][SerializeField] private float distance, radius;
     private int numberOfStickMan;
+    Vector3 offset;
     //numberOfStickman diye tutulan sayý ürettiðimiz kopya sayýsý aslýnda yani bizim childobje sayýmýz
     private void Start()
     {
@@ -17,7 +18,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void Update()
     {
-        //MovementHandler();
+        MovementHandler();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -52,14 +53,29 @@ public class PlayerScript : MonoBehaviour
             
         }
     }
-    /*private void MovementHandler()
+    Vector3 mousePosition;
+    private void MovementHandler()
     {
-        var mousePosition = Input.mousePosition;
-        Debug.Log(mousePosition);
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        mousePosition.z = 0;
+        
+        
+        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y, Camera.main.transform.position.z - 9));
+       // mousePosition.z = Camera.main.transform.position.z - 9;
         mousePosition.y = 0;
-        mousePosition.x = Mathf.Clamp(mousePosition.x, -10, 10);
-        transform.position = Vector3.Lerp(transform.position, mousePosition, Time.deltaTime);   
-    }*/
+         transform.position = new Vector3(Mathf.Clamp(transform.position.x,-5,5),transform.position.y,transform.position.z);
+        transform.position += Vector3.back * Time.deltaTime*5;
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            offset = transform.position - mousePosition;
+            Debug.Log(offset);
+            Debug.Log(mousePosition);
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+               transform.position = Vector3.Lerp(transform.position, mousePosition + offset, Time.deltaTime);
+           // transform.position = mousePosition + offset;
+        }
+        
+    }
 }
