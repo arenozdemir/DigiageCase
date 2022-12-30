@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void Update()
     {
-        //MovementHandler();
+        MovementHandler();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -52,14 +52,15 @@ public class PlayerScript : MonoBehaviour
             
         }
     }
-    /*private void MovementHandler()
+    private void MovementHandler()
     {
         var mousePosition = Input.mousePosition;
         Debug.Log(mousePosition);
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosition.z = 0;
         mousePosition.y = 0;
-        mousePosition.x = Mathf.Clamp(mousePosition.x, -10, 10);
-        transform.position = Vector3.Lerp(transform.position, mousePosition, Time.deltaTime);   
-    }*/
+        //mousePosition.x = Mathf.Clamp(mousePosition.x, -10, 10);
+        Vector3 targetPos = mousePosition - transform.position;
+        transform.position = Vector3.Lerp(transform.position, targetPos + transform.position, Time.deltaTime);   
+    }
 }
