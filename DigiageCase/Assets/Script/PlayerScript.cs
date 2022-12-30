@@ -68,8 +68,12 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+<<<<<<< Updated upstream
                transform.position = Vector3.Lerp(transform.position, mousePosition + offset, Time.deltaTime * 2);
          //     transform.position = transform.position + offset * Time.deltaTime;
+=======
+            transform.position = Vector3.Lerp(transform.position, mousePosition + offset, Time.deltaTime);
+>>>>>>> Stashed changes
            // transform.position = mousePosition + offset;
         }
     }
