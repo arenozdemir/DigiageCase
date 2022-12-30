@@ -9,7 +9,6 @@ public class PlayerScript : MonoBehaviour
     [Range(0, 3)][SerializeField] private float distance, radius;
     private int numberOfStickMan;
     Vector3 offset;
-
     private void Start()
     {
         player = transform;
@@ -18,7 +17,6 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         MovementHandler();
-        AnimationHandler();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -72,12 +70,4 @@ public class PlayerScript : MonoBehaviour
            // transform.position = mousePosition + offset;
         }
     }
-    private void AnimationHandler()
-    {
-        foreach (Transform child in transform)
-        {
-            child.GetComponentInChildren<Animator>().SetTrigger("isRunning");
-        }
-    }
-
 }
