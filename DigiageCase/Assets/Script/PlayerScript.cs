@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    private Transform enemy;
+    private bool attack;
     private Transform player;
     [SerializeField] private GameObject stickMan;
     [Range(0, 3)][SerializeField] private float distance, radius;
@@ -12,31 +15,42 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         player = transform;
-        numberOfStickMan = transform.childCount;
+        numberOfStickMan = 1;
     }
     private void Update()
     {
-        transform.position += Vector3.back * Time.deltaTime * 5;
-        MovementHandler();
+        if (attack)
+        {
+            RotationHandler();
+        }
+        else
+        {
+            MovementHandler();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Gate"))
         {
-            other.gameObject.SetActive(false);
-
+            //other.gameObject.SetActive(false);//gate1 false
+            
             var gate = other.GetComponent<GateScript>();
-
+            gate.ResetGate();
             GenerateStickMan(gate.multiply ? (numberOfStickMan * gate.randomNumber) : (numberOfStickMan + gate.randomNumber));
+        }
+        if (other.CompareTag("Enemy"))
+        {
+            enemy = other.transform;
+            attack = true;
         }
     }
     private void GenerateStickMan(int number)
     {
-        for (int i = 0; i < number; i++)
+        for (int i = 0; i < number - 1; i++) 
         {
             Instantiate(stickMan, transform.position, Quaternion.identity, transform);
         }
-        numberOfStickMan = transform.childCount;
+        numberOfStickMan += number-1;
         FormatStickMan();
     }
     private void FormatStickMan()
@@ -52,6 +66,7 @@ public class PlayerScript : MonoBehaviour
     Vector3 mousePosition;
     private void MovementHandler()
     {
+        transform.position += Vector3.back * Time.deltaTime * 5;
         float z = Camera.main.transform.position.z - transform.position.z ;
         mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y, z));
        // mousePosition.z = Camera.main.transform.position.z - 9;
@@ -68,13 +83,38 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-<<<<<<< Updated upstream
-               transform.position = Vector3.Lerp(transform.position, mousePosition + offset, Time.deltaTime * 2);
+            transform.position = Vector3.Lerp(transform.position, mousePosition + offset, Time.deltaTime * 2);
          //     transform.position = transform.position + offset * Time.deltaTime;
-=======
             transform.position = Vector3.Lerp(transform.position, mousePosition + offset, Time.deltaTime);
->>>>>>> Stashed changes
+
            // transform.position = mousePosition + offset;
+        }
+    }
+    private void RotationHandler()
+    {
+        transform.position += Vector3.back * Time.deltaTime * 2.5f;
+        var enemyDirection = new Vector3(enemy.position.x, transform.position.y, enemy.position.z) - transform.position;
+         foreach (Transform child in transform)
+         {
+            if (child.CompareTag("Player"))
+            {
+                child.rotation = Quaternion.Slerp(child.rotation, Quaternion.LookRotation(-enemyDirection, Vector3.up), Time.deltaTime * 3f);
+            }
+        }
+        foreach(Transform child in player)
+        {
+            if (child.CompareTag("Player"))
+            {
+                float distance = Vector3.Distance(enemy.transform.position, child.position);
+                Debug.Log(distance);
+                if(distance < 6f)
+                {
+                    foreach(Transform enemy in enemy)
+                    {
+                        child.position = Vector3.Lerp(child.position, enemy.position, Time.deltaTime * 2f);
+                    }
+                }
+            }
         }
     }
 }

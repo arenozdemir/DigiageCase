@@ -1098,6 +1098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6536192053942619425}
   - component: {fileID: 5836979688317322291}
+  - component: {fileID: 3033093069971668811}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1112,9 +1113,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5908415562635761563}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -0.02, y: 0, z: 42.9}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.3125, y: 0.3125, z: 0.3125}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6112890582035474881}
@@ -1124,7 +1125,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &5836979688317322291
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1132,7 +1133,7 @@ Animator:
   m_GameObject: {fileID: 5908415562635761563}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: eb54ef159e9644a43aea8dca7e9ddb79, type: 3}
-  m_Controller: {fileID: 9100000, guid: abc82f90acc20c243a3ae38c310b7b28, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6d2e9f8c5fbeb99419d3bab02dee9c72, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1141,7 +1142,29 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!195 &3033093069971668811
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5908415562635761563}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.46
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 6.88
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5925191106884711616
 GameObject:
   m_ObjectHideFlags: 0
