@@ -6,19 +6,25 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     private Transform enemy;
-    private bool attack;
+    public bool attack;
     private Transform player;
     [SerializeField] private GameObject stickMan;
     [Range(0, 3)][SerializeField] private float distance, radius;
-    private int numberOfStickMan;
+    public int numberOfStickMan;
     Vector3 offset;
+    EnemyManager enemyManager;
     private void Start()
     {
+        enemyManager = FindObjectOfType<EnemyManager>();
         player = transform;
         numberOfStickMan = 1;
     }
     private void Update()
     {
+        if (enemyManager.stickmans <= 0)
+        {
+            attack = false;
+        }
         if (attack)
         {
             RotationHandler();
@@ -36,7 +42,7 @@ public class PlayerScript : MonoBehaviour
             
             var gate = other.GetComponent<GateScript>();
             gate.ResetGate();
-            GenerateStickMan(gate.multiply ? (numberOfStickMan * gate.randomNumber) : (numberOfStickMan + gate.randomNumber));
+            GenerateStickMan(gate.randomNumber,gate.multiply);
         }
         if (other.CompareTag("Enemy"))
         {
@@ -44,13 +50,27 @@ public class PlayerScript : MonoBehaviour
             attack = true;
         }
     }
-    private void GenerateStickMan(int number)
+    private void GenerateStickMan(int number,bool isMultipy)
     {
-        for (int i = 0; i < number - 1; i++) 
+        Debug.Log(number);
+        if (!isMultipy)
         {
-            Instantiate(stickMan, transform.position, Quaternion.identity, transform);
+            for (int i = 0; i < number; i++)
+            {
+                Instantiate(stickMan, transform.position, Quaternion.identity, transform);
+                
+            }
+            numberOfStickMan += number;
         }
-        numberOfStickMan += number-1;
+        else
+        {
+            for (int i = 0; i < numberOfStickMan * (number -1); i++)
+            {
+                Instantiate(stickMan, transform.position, Quaternion.identity, transform);
+            }
+            numberOfStickMan += numberOfStickMan * (number - 1);
+        }
+        
         FormatStickMan();
     }
     private void FormatStickMan()
@@ -106,7 +126,7 @@ public class PlayerScript : MonoBehaviour
             if (child.CompareTag("Player"))
             {
                 float distance = Vector3.Distance(enemy.transform.position, child.position);
-                Debug.Log(distance);
+             //   Debug.Log(distance);
                 if(distance < 6f)
                 {
                     foreach(Transform enemy in enemy)

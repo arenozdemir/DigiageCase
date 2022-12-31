@@ -5,9 +5,11 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private GameObject stickMan;
     [Range(0, 3)][SerializeField] private float distance, radius;
+    public int stickmans;
     private void Start()
     {
-        for(int i = 0; i < Random.Range(20, 120); i++)
+        stickmans = Random.Range(20, 30);
+        for (int i = 0; i < stickmans; i++)
         {
             Instantiate(stickMan, transform.position, Quaternion.identity, transform);
         }

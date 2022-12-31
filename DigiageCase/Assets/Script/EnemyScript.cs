@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    PlayerScript playerScript;
+    EnemyManager enemyManager;
+    private void Awake()
     {
-        
+        playerScript = FindObjectOfType<PlayerScript>();
+        enemyManager = GetComponentInParent<EnemyManager>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
         
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("a");
+            gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
+            playerScript.numberOfStickMan--;
+            enemyManager.stickmans--;
+            
+        }
     }
 }
