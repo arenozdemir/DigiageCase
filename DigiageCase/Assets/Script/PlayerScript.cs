@@ -36,21 +36,28 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Gate"))
-        {
-            //other.gameObject.SetActive(false);//gate1 false
+        //if (other.CompareTag("Gate"))
+        //{
+        //    //other.gameObject.SetActive(false);//gate1 false
             
-            var gate = other.GetComponent<GateScript>();
-            gate.ResetGate();
-            GenerateStickMan(gate.randomNumber,gate.multiply);
-        }
+        //  //  var gate = other.GetComponent<GateScript>();
+        //    //if (other.TryGetComponent(out GateScript gate))
+        //    //{
+
+        //    //    GenerateStickMan(gate.randomNumber, gate.multiply);
+        //    //    FormatStickMan();
+        //    //   // gate.ResetGate();
+        //    //}
+           
+        //}
         if (other.CompareTag("Enemy"))
         {
             enemy = other.transform;
             attack = true;
         }
+        
     }
-    private void GenerateStickMan(int number,bool isMultipy)
+    public void GenerateStickMan(int number,bool isMultipy)
     {
         Debug.Log(number);
         if (!isMultipy)
@@ -70,6 +77,7 @@ public class PlayerScript : MonoBehaviour
             }
             numberOfStickMan += numberOfStickMan * (number - 1);
         }
+        
         
         FormatStickMan();
     }

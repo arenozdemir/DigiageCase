@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
     public int stickmans;
     private void Start()
     {
-        stickmans = Random.Range(20, 30);
+        stickmans = Random.Range(20, 25);
         for (int i = 0; i < stickmans; i++)
         {
             Instantiate(stickMan, transform.position, Quaternion.identity, transform);

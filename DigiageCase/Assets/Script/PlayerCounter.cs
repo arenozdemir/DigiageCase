@@ -7,11 +7,16 @@ public class PlayerCounter : MonoBehaviour
     public static int playerCounter = 0;
     public TextMeshProUGUI text;
     public Transform PlayerTransform;
-
+    PlayerScript playerScript;
+    private void Start()
+    {
+        playerScript = FindObjectOfType<PlayerScript>();
+    }
 
     private void Update()
     {
-        text.text = playerCounter.ToString();
+       // text.text = playerCounter.ToString();
+       text.text = playerScript.numberOfStickMan.ToString();
         TextMover();
     }
 

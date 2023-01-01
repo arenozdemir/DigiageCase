@@ -23,13 +23,21 @@ public class GateScript : MonoBehaviour
     private int MultiplierOrPlus()
     {
 
-        return multiply ? randomNumber = Random.Range(2, 5) : randomNumber = Random.Range(10, 100);
+        return multiply ? randomNumber = Random.Range(2, 5) : randomNumber = Random.Range(25, 40);
     }
     public void ResetGate()
     {
         for (int i = 0; i < gate.Length; i++)
         {
             gate[i].gameObject.SetActive(false);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out PlayerScript player))
+        {
+            player.GenerateStickMan(randomNumber, multiply);
+            ResetGate();
         }
     }
 

@@ -2,27 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyScript : MonoBehaviour
+public class Obstacle : MonoBehaviour
 {
     PlayerScript playerScript;
-    EnemyManager enemyManager;
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
         playerScript = FindObjectOfType<PlayerScript>();
-        enemyManager = GetComponentInParent<EnemyManager>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Rotate(Vector3.up * 60 * Time.deltaTime, Space.Self);
     }
     private void OnTriggerEnter(Collider other)
     {
-        
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("a");
-            gameObject.SetActive(false);
             other.gameObject.SetActive(false);
             playerScript.numberOfStickMan--;
-            enemyManager.stickmans--;
             Destroy(other.gameObject);
-            
         }
     }
 }
