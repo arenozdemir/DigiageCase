@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyCounterEditor : MonoBehaviour
 {
-    private void OnEnable()
-    {
-        EnemyCounter.enemyCounter++;
-    }
-    private void OnDisable()
-    {
-        EnemyCounter.enemyCounter--;
-    }
+    //private void OnEnable()
+    //{
+    //    EnemyCounter.enemyCounter++;
+    //}
+    //private void OnDisable()
+    //{
+    //    EnemyCounter.enemyCounter--;
+    //}
 }

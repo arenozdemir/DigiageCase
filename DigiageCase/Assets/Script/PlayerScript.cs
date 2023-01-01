@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     public int numberOfStickMan;
     Vector3 offset;
     EnemyManager enemyManager;
+    public bool isEnded;
     private void Start()
     {
         enemyManager = FindObjectOfType<EnemyManager>();
@@ -36,20 +37,21 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.CompareTag("Gate"))
-        //{
-        //    //other.gameObject.SetActive(false);//gate1 false
-            
-        //  //  var gate = other.GetComponent<GateScript>();
-        //    //if (other.TryGetComponent(out GateScript gate))
-        //    //{
+        if (other.CompareTag("End"))
+        {
+            isEnded = true;
+            //other.gameObject.SetActive(false);//gate1 false
 
-        //    //    GenerateStickMan(gate.randomNumber, gate.multiply);
-        //    //    FormatStickMan();
-        //    //   // gate.ResetGate();
-        //    //}
-           
-        //}
+            //  var gate = other.GetComponent<GateScript>();
+            //if (other.TryGetComponent(out GateScript gate))
+            //{
+
+            //    GenerateStickMan(gate.randomNumber, gate.multiply);
+            //    FormatStickMan();
+            //   // gate.ResetGate();
+            //}
+
+        }
         if (other.CompareTag("Enemy"))
         {
             enemy = other.transform;
@@ -59,7 +61,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void GenerateStickMan(int number,bool isMultipy)
     {
-        Debug.Log(number);
+     //   Debug.Log(number);
         if (!isMultipy)
         {
             for (int i = 0; i < number; i++)
@@ -77,7 +79,7 @@ public class PlayerScript : MonoBehaviour
             }
             numberOfStickMan += numberOfStickMan * (number - 1);
         }
-        
+        Debug.Log(GetNumberOfStickMan());
         
         FormatStickMan();
     }
@@ -143,6 +145,34 @@ public class PlayerScript : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+    public int GetNumberOfStickMan()
+    {
+        int i = 0;
+        int step = 0;
+        while (i != numberOfStickMan && i < numberOfStickMan)
+        {
+            i += i;
+            i++;
+            step++;
+        }
+        return step;
+    }
+    public void Diz()
+    {
+        Stick[] sticks = GetComponentsInChildren<Stick>();
+        int step = GetNumberOfStickMan();
+        for (int i = 0; i < sticks.Length; i += step)
+        {
+            for (int k = 0; k <= step; k++)
+            {
+                sticks[i].transform.localPosition = new Vector3(k,0,0);
+                
+                
+            }
+            Debug.Log("bbb");
+          //  step--;
         }
     }
 }
