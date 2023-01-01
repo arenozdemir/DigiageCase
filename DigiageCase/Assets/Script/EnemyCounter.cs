@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyCounter : MonoBehaviour
 {
-    //  public static int enemyCounter = 0;
     EnemyManager enemyManager;
     private void Start()
     {

@@ -15,7 +15,6 @@ public class PlayerCounter : MonoBehaviour
 
     private void Update()
     {
-       // text.text = playerCounter.ToString();
        text.text = playerScript.numberOfStickMan.ToString();
         TextMover();
     }

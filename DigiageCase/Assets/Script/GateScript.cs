@@ -10,7 +10,6 @@ public class GateScript : MonoBehaviour
     public int randomNumber;
     private void Awake()
     {
-        //find gate object in hierarchy
         gate = transform.parent.GetComponentsInChildren<GateScript>();
         textMeshPro = GetComponentInChildren<TextMeshPro>();
     }
